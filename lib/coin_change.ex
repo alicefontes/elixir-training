@@ -4,8 +4,10 @@ defmodule CoinChange do
     cond do
       amount == 0 -> 1
       amount < 0 -> 0
-      _ -> 
-        
+      true ->
+      Enum.reduce(coins, 0, fn count, coin ->
+        solve(amount - coin, coins) + count
+      end)
     end
   end
 end
